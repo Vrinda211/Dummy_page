@@ -126,7 +126,7 @@
                         var id = document.getElementById("day").value;
                         var tdate = document.getElementById("temp").value;
                         var tdate1 = document.getElementById("loc").value;
-             var result = myContract.methods.store_manufacture_details(ds1,ds2,tname,id,tdate,tdate1).send(function (err, result) {
+             var result = myContract.methods.store_weather_details(ds1,ds2,tname,id,tdate,tdate1).send(function (err, result) {
                
                 if (err) { console.log(err); }
                 if (result) { document.getElementById("result").innerHTML = result; }
@@ -136,13 +136,15 @@
 		function show_details() {
             var myContract = new web3.eth.Contract(abi,contractaddress, {from: account, gasPrice: '5000000', gas: '500000'});
             var idd = document.getElementById("tid").value;
-             var result = myContract.methods.retreive_manufacture_details(idd).call(function (err, result) {
+             var result = myContract.methods.retreive_weather_details(idd).call(function (err, result) {
                
                 if (err) { console.log(err); }
                 if (result) { 
-                    document.getElementById("get_hum").innerHTML = result[0];
+                    document.getElementById("get_precip").innerHTML = result[0];
 		    document.getElementById("get_cor").innerHTML = result[1];
-		    document.getElementById("get_day").innerHTML = result[2];
+		    document.getElementById("get_hum").innerHTML = result[2];
+		    document.getElementById("get_day").innerHTML = result[3];
+		    document.getElementById("get_temp").innerHTML = result[4];
                 }
                
                 });
